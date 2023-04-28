@@ -8,41 +8,39 @@ const Main = () => {
       <Header />
       <MainContainer>
         <div>
-            <MainContentImg src={`${process.env.PUBLIC_URL}/images/haru.png`} alt="" />
+          <MainContentImg src={`${process.env.PUBLIC_URL}/images/haru.png`} alt="" />
         </div>
 
         <MainContentRight>
           <MainContentRightTitle>
-            What The Snack은<br />
-            국내외 다양한 과자들로<br />
-            추천하고 소개하는<br />
-            자유로운 공간입니다.
+            Why do we eat snacks like cookies?<br />
+            With so many delicious treats in the world,<br />
+            what is it about snacks, particularly cookies,<br />
+            that makes them so special?
           </MainContentRightTitle>
 
           <MainContentRightItem>
-            어쩌고 저쩌고어쩌고 저쩌고 <br />
-            어쩌고 저쩌고어쩌고 저쩌고 저쩌고어쩌고 저쩌고 저쩌고어쩌고 저쩌고 <br />
-            어쩌고 저쩌고
+            Here's how What the Snack sees it:
           </MainContentRightItem>
 
           <MainContentRightItem>
-            어쩌고 저쩌고어쩌고 저쩌고 <br />
+            From the sweet aroma that emanates from a freshly baked batch, <br />
+            to the sense of tranquility one feels while enjoying them in a cozy space, <br />
+            and the brief respite they provide from the daily grind,<br />
+            cookies offer a chance to escape the mundane and experience happiness and sweetness.
           </MainContentRightItem>
 
           <MainContentRightItem>
-            어쩌고 저쩌고어쩌고 저쩌고 <br />
-            어쩌고 저쩌고어쩌고 저쩌고 저쩌고어쩌고 저쩌고 저쩌고어쩌고 저쩌고 <br />
-            어쩌고 저쩌고
+            What the Snack exists for those who cherish their daily routines and aspire to make each day perfect, <br />
+            willingly embracing moments of rest and relaxation as a means of personal growth. <br />
+            It's the joy of discovering someone else's favorite treat, <br />
+            the pride of sharing one's own happiness with others,<br />
+            and the satisfaction of spreading a little bit of joy to the world.
           </MainContentRightItem>
 
           <MainContentRightItem>
-            어쩌고 저쩌고어쩌고 저쩌고 저쩌고 저쩌고어쩌고 저쩌고  저쩌고 저쩌고어쩌고 저쩌고 <br />
-            어쩌고 저쩌고어쩌고 저쩌고 저쩌고어쩌고 저쩌고 저쩌고어쩌고 저쩌고 <br />
-            어쩌고 저쩌고 저쩌고 저쩌고어쩌고 저쩌고
-          </MainContentRightItem>
-
-          <MainContentRightItem>
-            어쩌고 저쩌고어쩌고 저쩌고 저쩌고 저쩌고어쩌고 저쩌고  저쩌고 저쩌고어쩌고 저쩌고 <br />
+          What the Snack is a place where everyone's happiness is shared,<br />
+          and where dreams are made a reality. <br />
           </MainContentRightItem>
         </MainContentRight>
       </MainContainer>
@@ -66,6 +64,7 @@ const MainContentImg = styled.img`
   background-color: #b3b3f1;
   position: relative;
   left: -110px;
+  border: 2px solid black;
   @media (max-width:1080px) {
     display:none;
   }
