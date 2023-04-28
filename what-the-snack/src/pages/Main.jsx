@@ -1,7 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
 import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 const Main = () => {
   return (
     <>
@@ -87,4 +85,5 @@ const MainContentRightItem = styled.p`
   line-height: 18px;
   font-size: 12px;
 `
+
 export default Main
