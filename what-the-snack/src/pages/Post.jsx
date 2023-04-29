@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
@@ -11,6 +11,10 @@ import { addPosts } from '../api/posts'
 
 const Post = () => {
   const navigate = useNavigate();
+  const authorRef = useRef(null);
+  const titleRef = useRef(null);
+  const bodyRef = useRef(null);
+  const urlRef = useRef(null);
   
   const [author, onChangeAuthorhandler] = useInput();
   const [title, onChangeTitlehandler] = useInput();
@@ -28,6 +32,12 @@ const Post = () => {
 
   const onSubmitClickHandler = (e) => {
     e.preventDefault();
+    if(author === '') {
+      alert('이름을 입력해주세요!');
+      
+      return;
+    }
+
     // 나중에 입력값 검증 정규식 걸기
     const newPost = {
       id: uuidv4(),
@@ -71,7 +81,7 @@ const Post = () => {
               id="author"
               value={author}
               onChange={onChangeAuthorhandler}
-              required
+              ref={authorRef}
             />
             <Label htmlFor="title">제목</Label>
             <Input
@@ -81,7 +91,7 @@ const Post = () => {
               value={title}
               onChange={onChangeTitlehandler}
               maxLength={12}
-              required
+              ref={titleRef}
             />
             <Label htmlFor="body">내용</Label>
             <Textarea
@@ -90,7 +100,7 @@ const Post = () => {
               rows="10"
               value={body}
               onChange={onChangeBodyhandler}
-              required
+              ref={bodyRef}
             >
             </Textarea>
             <Label htmlFor="url">이미지 URL</Label>
@@ -100,7 +110,7 @@ const Post = () => {
               id="url"
               value={url}
               onChange={onChangeUrlhandler}
-              required
+              ref={urlRef}
             />
             <MainContentBtnDiv>
               <Button type="button" size={'small'} color={'white'} onClick={onListLinkClickHandler}>
