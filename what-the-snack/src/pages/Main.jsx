@@ -50,7 +50,7 @@ const Main = () => {
 }
 
 const MainContainer = styled.main`
-  height: 537px;
+  height: 62vh;
   background-color: #fffc63;
   display: flex;
   justify-content: center;

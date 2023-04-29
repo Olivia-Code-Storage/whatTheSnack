@@ -22,7 +22,7 @@ function Footer() {
 }
 
 const FooterContainer = styled.footer`
-  height: 150px;
+  height: 13vh;
   padding: 0 30px 0 30px;
   background-color: #ff4429;
   display: flex;
