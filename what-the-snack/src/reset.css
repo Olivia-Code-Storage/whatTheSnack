@@ -53,5 +53,10 @@ table {
 }
 
 body {
+  overflow-x: hidden;
 	font-family: 'Nunito Sans', 'Gothic A1';
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
