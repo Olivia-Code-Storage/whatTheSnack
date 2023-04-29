@@ -5,10 +5,13 @@ import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
 import useInput from '../hooks/useInput'
 import { v4 as uuidv4 } from 'uuid'
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
 import { addPosts } from '../api/posts'
 
 const Post = () => {
+  const navigate = useNavigate();
+  
   const [author, onChangeAuthorhandler] = useInput();
   const [title, onChangeTitlehandler] = useInput();
   const [body, onChangeBodyhandler] = useInput();
@@ -38,6 +41,22 @@ const Post = () => {
     // ! 리액트 쿼리
     mutation.mutate(newPost);
   }
+  
+  if(mutation.isSuccess) {
+    console.log('성공', mutation.data);
+    alert(`등록이 완료되었습니다!`);
+    navigate(-1);
+  }
+
+  if(mutation.isError) {
+    console.log('에러', mutation.error);
+    alert(`게시글 등록 중 오류가 발생했습니다.`);
+  }
+
+  const onListLinkClickHandler = (e) => {
+    e.preventDefault();
+    navigate(-1);
+  }
 
   return (
     <>
@@ -52,6 +71,7 @@ const Post = () => {
               id="author"
               value={author}
               onChange={onChangeAuthorhandler}
+              required
             />
             <Label htmlFor="title">제목</Label>
             <Input
@@ -60,6 +80,8 @@ const Post = () => {
               id="title"
               value={title}
               onChange={onChangeTitlehandler}
+              maxLength={12}
+              required
             />
             <Label htmlFor="body">내용</Label>
             <Textarea
@@ -68,6 +90,7 @@ const Post = () => {
               rows="10"
               value={body}
               onChange={onChangeBodyhandler}
+              required
             >
             </Textarea>
             <Label htmlFor="url">이미지 URL</Label>
@@ -77,9 +100,15 @@ const Post = () => {
               id="url"
               value={url}
               onChange={onChangeUrlhandler}
+              required
             />
             <MainContentBtnDiv>
-              <Button size={'small'} color={'white'} onClick={onSubmitClickHandler}>작성하기</Button>
+              <Button type="button" size={'small'} color={'white'} onClick={onListLinkClickHandler}>
+                뒤로가기
+              </Button>
+              <Button type="button" size={'small'} color={'red'} onClick={onSubmitClickHandler}>
+                작성하기
+              </Button>
             </MainContentBtnDiv>
           </MainContentForm>
         </div>
@@ -118,6 +147,7 @@ const MainContentBtnDiv = styled.div`
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  gap: 10px;
 `
 
 export default Post
