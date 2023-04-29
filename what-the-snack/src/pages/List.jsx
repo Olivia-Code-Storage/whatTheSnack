@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query'
 import { getPosts } from '../api/posts'
 
@@ -12,8 +12,8 @@ const List = () => {
 
   // ! 리액트 쿼리 조회 로직
   const { isLoading, isError, data } = useQuery('posts', getPosts);
-  if(isLoading) return <h1>Loading</h1>;
-  if(isError) return <h1>Error</h1>;
+  if (isLoading) return <h1>Loading</h1>;
+  if (isError) return <h1>Error</h1>;
 
   // ! 페이지 이동
   const onPostLinkClickHandler = () => navigate(`/snackRecos/post`);
@@ -31,18 +31,20 @@ const List = () => {
           {
             data.map((item) => {
               return (
-                <MainContentItem key={ item.id }>
-                  <div>
-                    <img src={ item.url } alt="" />
-                  </div>
-                  <ItemH3>{ item.title }</ItemH3>
-                  <ItemSpanDiv>
-                    <span>
-                      { item.like === 0 ? '🤍' : '❤️'}
-                    </span>&nbsp;
-                    <span>{ item.like }</span>
-                  </ItemSpanDiv>
-                </MainContentItem>
+                <Link to={`/snackRecos/${item.id}`}  style={{ textDecoration: "none" }}>
+                  <MainContentItem key={item.id}>
+                    <div>
+                      <img src={item.url} alt="" />
+                    </div>
+                    <ItemH3>{item.title}</ItemH3>
+                    <ItemSpanDiv>
+                      <span>
+                        {item.like === 0 ? '🤍' : '❤️'}
+                      </span>&nbsp;
+                      <span>{item.like}</span>
+                    </ItemSpanDiv>
+                  </MainContentItem>
+                </Link>
               )
             })
           }
