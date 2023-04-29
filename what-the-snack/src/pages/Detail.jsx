@@ -2,31 +2,53 @@ import React from 'react';
 import Header from '../components/Header/Header';
 import Button from '../components/common/Button'
 import styled from 'styled-components';
+import { getPosts } from '../api/posts'
+import { useNavigate, useParams } from 'react-router';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { removePosts } from '../api/posts';
 
 const Detail = () => {
+  const { isLoading, isError, data } = useQuery('posts', getPosts);
+const navigate = useNavigate()
+
+  const params = useParams()
+  const foundData = data.find((item) => {
+    return item.id === params.id
+  })
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation(removePosts, {
+    onSuccess: () => {
+      navigate('/snackRecos')
+      queryClient.invalidateQueries('posts');
+    }
+  })
+
+
   return (
     <>
       <Header />
       <DetailContainer>
 
-        <DetailContentImg src={`${process.env.PUBLIC_URL}/images/haru.png`} alt="" />
+        <DetailContentImg src={foundData.url} alt="" />
 
         <DetailContentRight>
 
-          <DetailContentTitle>제목</DetailContentTitle>
+          <DetailContentTitle>{foundData.title}</DetailContentTitle>
 
-          <DetailContentAuthor>작성자</DetailContentAuthor>
+          <DetailContentAuthor>{foundData.author}</DetailContentAuthor>
 
-          <p>What the Snack exists for those who cherish their daily routines and aspire to make each day perfect, <br />
-            willingly embracing moments of rest and relaxation as a means of personal growth. <br />
-            It's the joy of discovering someone else's favorite treat, <br /></p>
-          <p />
+          <p>{foundData.body}</p>
 
           <DetailBottomContentWrap>
-            <span>🧡</span>
+            <span>🧡 {foundData.like}</span>
             <DetailContentBtnWrap>
-              <Button size={'small'} color={'white'}>수정</Button>
-              <Button size={'small'} color={'white'}>삭제</Button>
+              <Button size={'small'} color={'white'} onClick={() => {
+                navigate(`/snackRecos/post/${foundData.id}`)
+              }}>수정</Button>
+              <Button size={'small'} color={'white'} onClick={() => {
+                mutation.mutate(foundData.id)
+              }}>삭제</Button>
             </DetailContentBtnWrap>
           </DetailBottomContentWrap>
 
