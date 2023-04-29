@@ -50,6 +50,7 @@ const Main = () => {
 }
 
 const MainContainer = styled.main`
+	/* overflow: hidden; */
   height: 62vh;
   background-color: #fffc63;
   display: flex;
