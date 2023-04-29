@@ -1,27 +1,61 @@
-import React, { useRef } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
 import useInput from '../hooks/useInput'
 import { v4 as uuidv4 } from 'uuid'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
-import { addPosts } from '../api/posts'
+import { addPosts, modifyPosts } from '../api/posts'
 
 const Post = () => {
   const navigate = useNavigate();
+  const location = useLocation()
+
+
+  const [author, setAuthor] = useState('');
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [url, setUrl] = useState('');
+
   const authorRef = useRef(null);
   const titleRef = useRef(null);
   const bodyRef = useRef(null);
   const urlRef = useRef(null);
-  
-  const [author, onChangeAuthorhandler] = useInput();
-  const [title, onChangeTitlehandler] = useInput();
-  const [body, onChangeBodyhandler] = useInput();
-  const [url, onChangeUrlhandler] = useInput();
 
-  // ! 리액트 쿼리
+  useEffect(() => {
+    if (location.state !== null) {
+      setAuthor(location.state.author);
+      setTitle(location.state.title);
+      setBody(location.state.body);
+      setUrl(location.state.url);
+      return () => {
+        setAuthor('');
+        setTitle('');
+        setBody('');
+        setUrl('');
+      }
+    }
+  }, []);
+
+  const onChangeAuthorhandler = useCallback((e) => {
+    setAuthor(e.target.value);
+  }, [])
+
+  const onChangeTitlehandler = useCallback((e) => {
+    setTitle(e.target.value);
+  }, [])
+
+  const onChangeBodyhandler = useCallback((e) => {
+    setBody(e.target.value);
+  }, [])
+
+  const onChangeUrlhandler = useCallback((e) => {
+    setUrl(e.target.value);
+  }, [])
+
+
   const queryClient = useQueryClient();
   const mutation = useMutation(addPosts, {
     onSuccess: () => {
@@ -30,15 +64,20 @@ const Post = () => {
     }
   })
 
+  const mutation2 = useMutation(modifyPosts, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('posts');
+      console.log('성공');
+    }
+  })
+
   const onSubmitClickHandler = (e) => {
     e.preventDefault();
-    if(author === '') {
+    if (author === '') {
       alert('이름을 입력해주세요!');
-      
       return;
     }
 
-    // 나중에 입력값 검증 정규식 걸기
     const newPost = {
       id: uuidv4(),
       author,
@@ -48,19 +87,25 @@ const Post = () => {
       url,
     }
 
-    // ! 리액트 쿼리
     mutation.mutate(newPost);
   }
-  
-  if(mutation.isSuccess) {
-    console.log('성공', mutation.data);
-    alert(`등록이 완료되었습니다!`);
-    navigate(-1);
-  }
 
-  if(mutation.isError) {
-    console.log('에러', mutation.error);
-    alert(`게시글 등록 중 오류가 발생했습니다.`);
+  const onmodifyClickHandler = (e) => {
+    e.preventDefault();
+
+    const modifyPost = {
+      id: location.state.id,
+      author: author,
+      title: title,
+      body: body,
+      like: location.state.like,
+      url: url,
+    }
+
+    console.log('여기는 post.jsx', modifyPost);
+    console.log('location.state.id', location.state.id);
+
+    mutation2.mutate(location.state.id, modifyPost);
   }
 
   const onListLinkClickHandler = (e) => {
@@ -116,9 +161,11 @@ const Post = () => {
               <Button type="button" size={'small'} color={'white'} onClick={onListLinkClickHandler}>
                 뒤로가기
               </Button>
-              <Button type="button" size={'small'} color={'red'} onClick={onSubmitClickHandler}>
-                작성하기
-              </Button>
+              {
+                location.state !== null ?
+                  <Button type="button" size={'small'} color={'red'} onClick={onmodifyClickHandler}>수정하기</Button>
+                  : <Button type="button" size={'small'} color={'red'} onClick={onSubmitClickHandler}>작성하기</Button>
+              }
             </MainContentBtnDiv>
           </MainContentForm>
         </div>
