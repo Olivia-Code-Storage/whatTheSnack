@@ -50,7 +50,7 @@ const Main = () => {
 }
 
 const MainContainer = styled.main`
-  height: 450px;
+  height: 537px;
   background-color: #fffc63;
   display: flex;
   justify-content: center;
@@ -59,8 +59,8 @@ const MainContainer = styled.main`
 `
 
 const MainContentImg = styled.img`
-  width: 650px;
-  height: 300px;
+  width: 700px;
+  height: 350px;
   background-color: #b3b3f1;
   position: relative;
   left: -110px;
@@ -77,14 +77,14 @@ const MainContentRight = styled.div`
 `
 
 const MainContentRightTitle = styled.h4`
-  line-height: 20px;
-  font-size: 14px;
+  line-height: 26px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 2px;
 `
 
 const MainContentRightItem = styled.p`
-  line-height: 18px;
-  font-size: 12px;
+  line-height: 22px;
+  font-size: 16px;
 `
 export default Main

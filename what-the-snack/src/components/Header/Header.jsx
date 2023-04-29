@@ -23,7 +23,7 @@ function Header() {
 }
 
 const HeaderContainer = styled.header`
-  height: 200px;
+  height: 250px;
   padding: 10px 10px 20px 10px;
   border-bottom: 2px solid black;
 `
@@ -34,7 +34,7 @@ const HeaderTopContent = styled.div`
 const HeaderTopContentItem = styled.div`
   display: flex;
   gap: 20px;
-  font-size: 24px;
+  font-size: 34px;
 `
 
 const HeaderItem = styled.p`
@@ -44,15 +44,19 @@ const HeaderItem = styled.p`
 `
 
 const HeaderBottomContent = styled.div`
-  font-size: 155px;
+  font-size: 200px;
   text-align: center; 
   letter-spacing: 18px;
   position: absolute;
   z-index: -1;
-  top: 45px;
+  top: 55px;
   font-weight: 900;
 `
 const HighLightSpan = styled.span`
   color: #ff4429;
+`
+
+const remove = styled.div`
+  
 `
 export default Header

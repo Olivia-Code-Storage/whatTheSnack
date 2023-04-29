@@ -9,7 +9,7 @@ function Footer() {
           <p>부천신중동역2번출구(유) 대표: Heeje, Hansol, 부천시 오정구 소사대로 382 (도당동) 항해99타워, 01499</p>
           <p>사업자등록번호: 131-41-41799</p>
           <p>사업자정보조회</p>
-          <p>고객관리지원팀: (02) 8941-0234 lv4test@gamil.com</p>
+          <p>고객관리지원팀: (02) 8941-0234 lv4test@gmail.com</p>
         </FooterLeftContent>
         <Logo src={`${process.env.PUBLIC_URL}/images/logo-removebg-preview.png`} />
         <FooterRightContent>
@@ -22,13 +22,13 @@ function Footer() {
 }
 
 const FooterContainer = styled.footer`
-  height: 100px;
-  padding: 10px 30PX 10PX 30PX;
+  height: 150px;
+  padding: 0 30px 0 30px;
   background-color: #ff4429;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
+  font-size: 14px;
   /* color: rgba(255, 255, 255, 0.9); */
   color: black;
   border-top: 2px solid black;
@@ -40,16 +40,16 @@ const FooterLeftContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
-  @media (max-width:1080px) {
+  @media (max-width:782px) {
     display:none;
     transition: all 0.5s;
   }
 `
 const Logo = styled.img`
-  width: 100px;
+  width: 150px;
   transform: translateX(-50%);
   @media (max-width:1080px) {
-    width: 130px;
+    width: 160px;
     transform: translateX(0);
     transition: all 0.5s;
   }
@@ -58,11 +58,15 @@ const Logo = styled.img`
 const FooterRightContent = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+
+  @media (max-width:1080px) {
+    flex-direction: column;
+  }
 `
 
 const FotterName = styled.p`
-  font-size: 30px;
+  font-size: 40px;
     font-family: 'Libre Barcode 39 Text', cursive;
 `
 export default Footer
