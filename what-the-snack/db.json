@@ -1,20 +1,12 @@
 {
   "posts": [
     {
-      "id": 1,
-      "author": "hansol",
-      "title": "json test",
-      "body": "what the snack",
-      "like": 5,
-      "url": "https://bit.ly/3LEhAaK"
-    },
-    {
-      "id": 2,
-      "author": "heeje",
-      "title": "another test",
-      "body": "cookie",
+      "id": "180724e4-ae98-4993-87f1-ec776f48c495",
+      "author": "김한솔",
+      "title": "오리온 초코파이",
+      "body": "초코파이 전자렌지에 7초 데워드세요",
       "like": 0,
-      "url": "https://bit.ly/3LCwXkc"
+      "url": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/8503351468107081-70b6f204-9ec7-4699-9aea-c40ac01ff922.jpg"
     },
     {
       "id": "180724e4-ae98-4993-87f1-ec776f48c495",
