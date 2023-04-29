@@ -5,12 +5,23 @@ import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
 import useInput from '../hooks/useInput'
 import { v4 as uuidv4 } from 'uuid'
+import { useMutation, useQueryClient } from 'react-query';
+import { addPosts } from '../api/posts'
 
 const Post = () => {
   const [author, onChangeAuthorhandler] = useInput();
   const [title, onChangeTitlehandler] = useInput();
   const [body, onChangeBodyhandler] = useInput();
   const [url, onChangeUrlhandler] = useInput();
+
+  // ! 리액트 쿼리
+  const queryClient = useQueryClient();
+  const mutation = useMutation(addPosts, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('posts');
+      console.log('성공');
+    }
+  })
 
   const onSubmitClickHandler = (e) => {
     e.preventDefault();
@@ -23,6 +34,9 @@ const Post = () => {
       like: 0,
       url,
     }
+
+    // ! 리액트 쿼리
+    mutation.mutate(newPost);
   }
 
   return (

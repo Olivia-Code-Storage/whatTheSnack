@@ -7,4 +7,9 @@ const getPosts = async () => {
   return response.data;
 }
 
-export { getPosts }
+// * 추가
+const addPosts = async (newPost) => {
+  await axios.post(`${process.env.REACT_APP_SERVER_URL}/posts`, newPost);
+}
+
+export { getPosts, addPosts }
