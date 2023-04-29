@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header/Header';
 import Button from '../components/common/Button'
 import styled from 'styled-components';
@@ -9,7 +9,8 @@ import { removePosts } from '../api/posts';
 
 const Detail = () => {
   const { isLoading, isError, data } = useQuery('posts', getPosts);
-const navigate = useNavigate()
+  const [currentInfo, setCurrentInfo] = useState('')
+  const navigate = useNavigate()
 
   const params = useParams()
   const foundData = data.find((item) => {
@@ -44,7 +45,16 @@ const navigate = useNavigate()
             <span>🧡 {foundData.like}</span>
             <DetailContentBtnWrap>
               <Button size={'small'} color={'white'} onClick={() => {
-                navigate(`/snackRecos/post/${foundData.id}`)
+                navigate(`/snackRecos/post`, {
+                  state: {
+                    id: foundData.id,
+                    author: foundData.author,
+                    title: foundData.title,
+                    body: foundData.body,
+                    like: foundData.like,
+                    url: foundData.url,
+                  }
+                })
               }}>수정</Button>
               <Button size={'small'} color={'white'} onClick={() => {
                 mutation.mutate(foundData.id)

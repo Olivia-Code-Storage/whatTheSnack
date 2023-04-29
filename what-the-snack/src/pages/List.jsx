@@ -31,7 +31,7 @@ const List = () => {
           {
             data.map((item) => {
               return (
-                <Link to={`/snackRecos/${item.id}`}  style={{ textDecoration: "none" }}>
+                <Link to={`/snackRecos/${item.id}`}  style={{ textDecoration: "none" }} key={item.id}>
                   <MainContentItem key={item.id}>
                     <div>
                       <img src={item.url} alt="" />

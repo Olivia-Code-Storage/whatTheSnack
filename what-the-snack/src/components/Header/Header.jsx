@@ -1,13 +1,21 @@
 import React from 'react';
 import styled from 'styled-components'
+import { useNavigate } from 'react-router';
+
 function Header() {
+
+  const navigate = useNavigate()
   return (
     <>
       <HeaderContainer>
         <HeaderTopContent>
           <HeaderTopContentItem>
-            <HeaderItem>Home</HeaderItem>
-            <HeaderItem>Snack Recos?</HeaderItem>
+            <HeaderItem onClick={() => {
+              navigate('/')
+            }}>Home</HeaderItem>
+            <HeaderItem onClick={() => {
+              navigate('/snackRecos')
+            }}>Snack Recos?</HeaderItem>
           </HeaderTopContentItem>
           <HeaderTopContentItem>
             <HeaderItem>Login</HeaderItem>
