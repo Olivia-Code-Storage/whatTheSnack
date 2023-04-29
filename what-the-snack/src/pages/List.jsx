@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query'
 import { getPosts } from '../api/posts'
 
 const List = () => {
   const navigate = useNavigate();
-  
+
   // ! 리액트 쿼리 조회 로직
   const { isLoading, isError, data } = useQuery('posts', getPosts);
   if(isLoading) return <h1>Loading</h1>;
@@ -28,16 +28,6 @@ const List = () => {
           </Button>
         </MainContentTop>
         <MainContentBottom>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/3AFBJqE" alt="" />
-            </div>
-            <ItemH3>칩스 아호이 오리지널</ItemH3>
-            <ItemSpanDiv>
-              <span>🤍</span>&nbsp;
-              <span>35</span>
-            </ItemSpanDiv>
-          </MainContentItem>
           {
             data.map((item) => {
               return (
