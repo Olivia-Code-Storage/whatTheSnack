@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Button({ size, color, children }) {
+function Button({ size, color, onClick, children }) {
   const Button = styled.button`
     ${() => sizeHandler(size)};
     ${() => colorHandler(color)};
@@ -39,7 +39,11 @@ function Button({ size, color, children }) {
   }
 
   return (
-    <Button>{children}</Button>
+    <Button
+      onClick={onClick}
+    >
+      {children}
+    </Button>
   )
 }
 
