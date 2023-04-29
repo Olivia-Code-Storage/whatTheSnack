@@ -3,16 +3,14 @@ import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
-import useInput from '../hooks/useInput'
 import { v4 as uuidv4 } from 'uuid'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useMutation, useQueryClient } from 'react-query';
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useMutation, useQueryClient } from 'react-query'
 import { addPosts, modifyPosts } from '../api/posts'
 
 const Post = () => {
   const navigate = useNavigate();
   const location = useLocation()
-
 
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
@@ -57,26 +55,26 @@ const Post = () => {
 
 
   const queryClient = useQueryClient();
-  const mutation = useMutation(addPosts, {
+  const addPostsMutation = useMutation(addPosts, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
-      console.log('성공');
     }
   })
 
-  const mutation2 = useMutation(modifyPosts, {
+  const modifyPostsMutation = useMutation(modifyPosts, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
-      console.log('성공');
     }
   })
 
   const onSubmitClickHandler = (e) => {
     e.preventDefault();
+    // 유효성검증
     if (author === '') {
       alert('이름을 입력해주세요!');
       return;
     }
+    // 유효성검증
 
     const newPost = {
       id: uuidv4(),
@@ -86,26 +84,40 @@ const Post = () => {
       like: 0,
       url,
     }
+    addPostsMutation.mutate(newPost);
+  }
 
-    mutation.mutate(newPost);
+  if(addPostsMutation.isSuccess) {
+    console.log('성공', addPostsMutation.data);
+    alert(`게시글 등록이 완료되었습니다!`);
+    navigate(-1);
+  }
+
+  if(addPostsMutation.isError) {
+    console.log('에러', addPostsMutation.error);
+    alert(`게시글 등록 중 오류가 발생했습니다.`);
   }
 
   const onmodifyClickHandler = (e) => {
     e.preventDefault();
-
-    const modifyPost = {
+    modifyPostsMutation.mutate({
       id: location.state.id,
-      author: author,
-      title: title,
-      body: body,
-      like: location.state.like,
-      url: url,
-    }
+      author,
+      title,
+      body,
+      url,
+    });
+  }
 
-    console.log('여기는 post.jsx', modifyPost);
-    console.log('location.state.id', location.state.id);
+  if(modifyPostsMutation.isSuccess) {
+    console.log('성공', modifyPostsMutation.data);
+    alert(`게시글 수정이 완료되었습니다!`);
+    navigate(-1);
+  }
 
-    mutation2.mutate(location.state.id, modifyPost);
+  if(modifyPostsMutation.isError) {
+    console.log('에러', modifyPostsMutation.error);
+    alert(`게시글 수록 중 오류가 발생했습니다.`);
   }
 
   const onListLinkClickHandler = (e) => {

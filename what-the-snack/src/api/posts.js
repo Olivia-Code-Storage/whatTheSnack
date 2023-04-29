@@ -17,15 +17,14 @@ const removePosts = async (id) => {
 }
 
 // * 수정
-const modifyPosts = async (id, updatedData) => {
-  console.log('여기는 axios의 id값', id);
-  console.log('여기는 axios 부분', updatedData);
-  return await axios?.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`, updatedData)
+const modifyPosts = async (data) => {
+  const { id, ...updatedData } = data;
+  await axios.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`, updatedData)
   .then(response => {
-    console.log('response', response);
+    console.log('modifyPosts response', response);
   })
   .catch(error => {
-    console.error('error', error);
+    console.error('modifyPosts error', error);
   });
 }
 
