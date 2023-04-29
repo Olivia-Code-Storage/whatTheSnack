@@ -52,7 +52,7 @@ table {
 	border-spacing: 0;
 }
 
-body {
+body, input, button, textarea {
   overflow-x: hidden;
 	font-family: 'Nunito Sans', 'Gothic A1';
 }
