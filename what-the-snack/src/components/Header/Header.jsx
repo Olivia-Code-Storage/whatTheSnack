@@ -23,7 +23,7 @@ function Header() {
 }
 
 const HeaderContainer = styled.header`
-  height: 250px;
+  height: 25vh;
   padding: 10px 10px 20px 10px;
   border-bottom: 2px solid black;
 `
@@ -38,6 +38,7 @@ const HeaderTopContentItem = styled.div`
 `
 
 const HeaderItem = styled.p`
+  cursor: pointer;
   &:hover {
     color: #ff4429;
   }
@@ -49,7 +50,7 @@ const HeaderBottomContent = styled.div`
   letter-spacing: 18px;
   position: absolute;
   z-index: -1;
-  top: 55px;
+  top: 50px;
   font-weight: 900;
 `
 const HighLightSpan = styled.span`
