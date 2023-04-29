@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "author": "hansol",
+      "title": "json test",
+      "body": "what the snack",
+      "like": 5,
+      "url": "https://bit.ly/3LEhAaK"
+    },
+    {
+      "id": 2,
+      "author": "heeje",
+      "title": "another test",
+      "body": "cookie",
+      "like": 0,
+      "url": "https://bit.ly/3LCwXkc"
+    }
+  ]
+}

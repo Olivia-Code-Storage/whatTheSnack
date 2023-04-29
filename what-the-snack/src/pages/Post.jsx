@@ -5,7 +5,6 @@ import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
 import useInput from '../hooks/useInput'
 import { v4 as uuidv4 } from 'uuid'
-import { useDispatch, useSelector } from 'react-redux'
 
 const Post = () => {
   const [author, onChangeAuthorhandler] = useInput();

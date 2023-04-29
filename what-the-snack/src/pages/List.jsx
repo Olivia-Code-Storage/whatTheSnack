@@ -3,8 +3,15 @@ import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
+import { useQuery } from 'react-query'
+import { getPosts } from '../api/posts'
 
 const List = () => {
+  // ! 리액트 쿼리 조회 로직
+  const { isLoading, isError, data } = useQuery('posts', getPosts);
+  if(isLoading) return <h1>Loading</h1>;
+  if(isError) return <h1>Error</h1>;
+
   return (
     <>
       <Header />
@@ -23,76 +30,24 @@ const List = () => {
               <span>35</span>
             </ItemSpanDiv>
           </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/428oRVP" alt="" />
-            </div>
-            <ItemH3>레이즈 라임맛 감자칩</ItemH3>
-            <ItemSpanDiv>
-              <span>🤍</span>&nbsp;
-              <span>35</span>
-            </ItemSpanDiv>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/427dCgp" alt="" />
-            </div>
-            <ItemH3>몽쉘 너티프렌즈</ItemH3>
-            <ItemSpanDiv>
-              <span>🤍</span>&nbsp;
-              <span>35</span>
-            </ItemSpanDiv>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/3Hjoos4" alt="" />
-            </div>
-            <ItemH3>이토 랑그리 초코 크림샌드</ItemH3>
-            <ItemSpanDiv>
-              <span>🤍</span>&nbsp;
-              <span>35</span>
-            </ItemSpanDiv>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/3LkdVxL" alt="" />
-            </div>
-            <ItemH3>캐나다 데어 메이플 쿠키</ItemH3>
-            <ItemSpanDiv>
-              <span>🤍</span>&nbsp;
-              <span>35</span>
-            </ItemSpanDiv>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/40IXtwp" alt="" />
-            </div>
-            <ItemH3>스모어오갓멜로 크리스피</ItemH3>
-            <ItemSpanDiv>
-              <span>🤍</span>&nbsp;
-              <span>35</span>
-            </ItemSpanDiv>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/444GqI6" alt="" />
-            </div>
-            <ItemH3>코알라마치 초코과자</ItemH3>
-            <ItemSpanDiv>
-              <span>🤍</span>&nbsp;
-              <span>35</span>
-            </ItemSpanDiv>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/3HoByEd" alt="" />
-            </div>
-            <ItemH3>로아커 헤이즐넛</ItemH3>
-            <ItemSpanDiv>
-              <span>🤍</span>&nbsp;
-              <span>35</span>
-            </ItemSpanDiv>
-          </MainContentItem>
+          {
+            data.map((item) => {
+              return (
+                <MainContentItem key={ item.id }>
+                  <div>
+                    <img src={ item.url } alt="" />
+                  </div>
+                  <ItemH3>{ item.title }</ItemH3>
+                  <ItemSpanDiv>
+                    <span>
+                      { item.like === 0 ? '🤍' : '❤️'}
+                    </span>&nbsp;
+                    <span>{ item.like }</span>
+                  </ItemSpanDiv>
+                </MainContentItem>
+              )
+            })
+          }
         </MainContentBottom>
       </MainContainer>
       <Footer />
