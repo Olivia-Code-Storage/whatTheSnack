@@ -3,21 +3,29 @@ import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Button from '../components/common/Button'
+import { useNavigate } from "react-router-dom";
 import { useQuery } from 'react-query'
 import { getPosts } from '../api/posts'
 
 const List = () => {
+  const navigate = useNavigate();
+  
   // ! 리액트 쿼리 조회 로직
   const { isLoading, isError, data } = useQuery('posts', getPosts);
   if(isLoading) return <h1>Loading</h1>;
   if(isError) return <h1>Error</h1>;
+
+  // ! 페이지 이동
+  const onPostLinkClickHandler = () => navigate(`/snackRecos/post`);
 
   return (
     <>
       <Header />
       <MainContainer>
         <MainContentTop>
-          <Button size={'large'} color={'white'}>Go Recos!</Button>
+          <Button size={'large'} color={'white'} onClick={onPostLinkClickHandler}>
+            Go Recos!
+          </Button>
         </MainContentTop>
         <MainContentBottom>
           <MainContentItem>
