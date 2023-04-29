@@ -22,7 +22,8 @@ function Footer() {
 }
 
 const FooterContainer = styled.footer`
-  height: 13vh;
+  overflow: hidden;
+  height: 140px;
   padding: 0 30px 0 30px;
   background-color: #ff4429;
   display: flex;
