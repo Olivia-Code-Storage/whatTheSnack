@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
-// import Button from '../components/common/Button'
+import Button from '../components/common/Button'
 
 const List = () => {
   return (
@@ -10,9 +10,7 @@ const List = () => {
       <Header />
       <MainContainer>
         <MainContentTop>
-          {/* <Button >Go Recos!</Button> */}
-          {/* <Button >Go Recos!</Button> */}
-          <button>Go Recos!</button>
+          <Button size={'large'} color={'white'}>Go Recos!</Button>
         </MainContentTop>
         <MainContentBottom>
           <MainContentItem>
@@ -20,112 +18,80 @@ const List = () => {
               <img src="https://bit.ly/3AFBJqE" alt="" />
             </div>
             <ItemH3>칩스 아호이 오리지널</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
+            <ItemSpanDiv>
+              <span>🤍</span>&nbsp;
+              <span>35</span>
+            </ItemSpanDiv>
           </MainContentItem>
           <MainContentItem>
             <div>
               <img src="https://bit.ly/428oRVP" alt="" />
             </div>
             <ItemH3>레이즈 라임맛 감자칩</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
+            <ItemSpanDiv>
+              <span>🤍</span>&nbsp;
+              <span>35</span>
+            </ItemSpanDiv>
           </MainContentItem>
           <MainContentItem>
             <div>
               <img src="https://bit.ly/427dCgp" alt="" />
             </div>
             <ItemH3>몽쉘 너티프렌즈</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
+            <ItemSpanDiv>
+              <span>🤍</span>&nbsp;
+              <span>35</span>
+            </ItemSpanDiv>
           </MainContentItem>
           <MainContentItem>
             <div>
               <img src="https://bit.ly/3Hjoos4" alt="" />
             </div>
             <ItemH3>이토 랑그리 초코 크림샌드</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
+            <ItemSpanDiv>
+              <span>🤍</span>&nbsp;
+              <span>35</span>
+            </ItemSpanDiv>
           </MainContentItem>
           <MainContentItem>
             <div>
               <img src="https://bit.ly/3LkdVxL" alt="" />
             </div>
             <ItemH3>캐나다 데어 메이플 쿠키</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
+            <ItemSpanDiv>
+              <span>🤍</span>&nbsp;
+              <span>35</span>
+            </ItemSpanDiv>
           </MainContentItem>
           <MainContentItem>
             <div>
               <img src="https://bit.ly/40IXtwp" alt="" />
             </div>
             <ItemH3>스모어오갓멜로 크리스피</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
+            <ItemSpanDiv>
+              <span>🤍</span>&nbsp;
+              <span>35</span>
+            </ItemSpanDiv>
           </MainContentItem>
           <MainContentItem>
             <div>
               <img src="https://bit.ly/444GqI6" alt="" />
             </div>
             <ItemH3>코알라마치 초코과자</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
+            <ItemSpanDiv>
+              <span>🤍</span>&nbsp;
+              <span>35</span>
+            </ItemSpanDiv>
           </MainContentItem>
           <MainContentItem>
             <div>
               <img src="https://bit.ly/3HoByEd" alt="" />
             </div>
-            <ItemH3>로아커 콰드라티니 헤이즐넛</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/3AFBJqE" alt="" />
-            </div>
-            <ItemH3>칩스 아호이 오리지널</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/428oRVP" alt="" />
-            </div>
-            <ItemH3>레이즈 라임맛 감자칩</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/427dCgp" alt="" />
-            </div>
-            <ItemH3>몽쉘 너티프렌즈</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/3Hjoos4" alt="" />
-            </div>
-            <ItemH3>이토 랑그리 초코 크림샌드</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/3LkdVxL" alt="" />
-            </div>
-            <ItemH3>캐나다 데어 메이플 쿠키</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/40IXtwp" alt="" />
-            </div>
-            <ItemH3>스모어오갓멜로 크리스피</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/444GqI6" alt="" />
-            </div>
-            <ItemH3>코알라마치 초코과자</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
-          </MainContentItem>
-          <MainContentItem>
-            <div>
-              <img src="https://bit.ly/3HoByEd" alt="" />
-            </div>
-            <ItemH3>로아커 콰드라티니 헤이즐넛</ItemH3>
-            <ItemSpan>♥ 35</ItemSpan>
+            <ItemH3>로아커 헤이즐넛</ItemH3>
+            <ItemSpanDiv>
+              <span>🤍</span>&nbsp;
+              <span>35</span>
+            </ItemSpanDiv>
           </MainContentItem>
         </MainContentBottom>
       </MainContainer>
@@ -141,7 +107,7 @@ const MainContainer = styled.main`
 const MainContentTop = styled.section`
   height: 50px;
   display: flex;
-  padding-right: 15px;
+  padding: 20px 23px 45px 0;
   justify-content: end;
 `
 
@@ -181,9 +147,9 @@ const ItemH3 = styled.h3`
   border-bottom: 3px solid lightgrey;
   letter-spacing: 2px;
 `
-
-const ItemSpan = styled.span`
+const ItemSpanDiv = styled.div`
   margin-top: 20px;
+  float: left;
   align-self: flex-start;
   font-size: 20px;
 `
