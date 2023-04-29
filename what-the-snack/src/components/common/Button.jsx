@@ -1,51 +1,73 @@
-import React from 'react'
-import styled from 'styled-components'
-
 function Button({ size, color, onClick, children }) {
-  const Button = styled.button`
-    ${() => sizeHandler(size)};
-    ${() => colorHandler(color)};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    &:hover {
-      filter: brightness(90%);
-    }
-  `
-
-  const sizeHandler = (size) => {
-    switch (size) {
-      case 'large':
-        return `width: 145px; height: 55px; font-size: 20px;`;
-      case 'small':
-        return `width: 100px; height: 45px; font-size: 15px;`;
-      default:
-        return;
-    }
-  }
-
-  const colorHandler = (color) => {
-    switch (color) {
-      case 'white':
-        return `border: 2px solid #000; background-color: #fff`;
-      case 'red':
-        return `border: 2px solid #000; background-color: #ff4429; color: white`;
-      default:
-        return;
-    }
-  }
+  const buttonStyle = getButtonStyle(size, color);
 
   return (
-    <Button
+    <button
       onClick={onClick}
+      style={buttonStyle}
     >
       {children}
-    </Button>
+    </button>
   )
 }
 
+// 버튼 기본 스타일 정의
+function getButtonStyle(size, color) {
+  const sizeStyle = getSizeStyle(size);
+  const colorStyle = getColorStyle(color);
+
+  return {
+    ...sizeStyle,
+    ...colorStyle,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    '&:hover': {
+      filter: 'brightness(90%)',
+    },
+  };
+}
+
+// 버튼 사이즈 정의
+function getSizeStyle(size) {
+  switch (size) {
+    case 'large':
+      return {
+        width: '145px',
+        height: '55px',
+        fontSize: '20px',
+      };
+    case 'small':
+      return {
+        width: '100px',
+        height: '45px',
+        fontSize: '15px',
+      };
+    default:
+      return {};
+  }
+}
+
+// 버튼 색상 정의
+function getColorStyle(color) {
+  switch (color) {
+    case 'white':
+      return {
+        border: '2px solid #000',
+        backgroundColor: '#fff',
+      };
+    case 'red':
+      return {
+        border: '2px solid #000',
+        backgroundColor: '#ff4429',
+        color: 'white',
+      };
+    default:
+      return {};
+  }
+}
 
 export default Button
