@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header/Header';
 import Button from '../components/common/Button'
 import styled from 'styled-components';
@@ -7,9 +7,9 @@ import { useNavigate, useParams } from 'react-router';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { removePosts } from '../api/posts';
 
+
 const Detail = () => {
   const { isLoading, isError, data } = useQuery('posts', getPosts);
-  const [currentInfo, setCurrentInfo] = useState('')
   const navigate = useNavigate()
 
   const params = useParams()
@@ -24,7 +24,6 @@ const Detail = () => {
       queryClient.invalidateQueries('posts');
     }
   })
-
 
   return (
     <>
@@ -69,7 +68,6 @@ const Detail = () => {
     </>
   )
 }
-
 
 const DetailContainer = styled.div`
   height: 62vh;
