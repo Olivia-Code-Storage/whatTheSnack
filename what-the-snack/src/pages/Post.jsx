@@ -13,9 +13,14 @@ const Post = () => {
   const navigate = useNavigate();
   const location = useLocation()
 
-  // * 임시
+  const [form, setForm] = useState({
+    author: '',
+    title: '',
+    body: '',
+    url: '',
+  })
+  
   const [author, setAuthor] = useState('');
-  // const [author, onChangeAuthorhandler] = useInput();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [url, setUrl] = useState('');
@@ -27,11 +32,17 @@ const Post = () => {
 
   useEffect(() => {
     if (location.state !== null) {
-      // useInput(location.state.author)
-      setAuthor(location.state.author);
-      setTitle(location.state.title);
-      setBody(location.state.body);
-      setUrl(location.state.url);
+      // setAuthor(location.state.author);
+      // setTitle(location.state.title);
+      // setBody(location.state.body);
+      // setUrl(location.state.url);
+      setForm({
+        ...form,
+        author: location.state.author,
+        title: location.state.title,
+        body: location.state.body,
+        url: location.state.url,
+      });
       return () => {
         setAuthor('');
         setTitle('');
@@ -41,24 +52,28 @@ const Post = () => {
     }
   }, []);
 
-  // * 임시 주석처리
-  const onChangeAuthorhandler = useCallback((e) => {
-    setAuthor(e.target.value);
-  }, [])
+  const onFormChangeHandler = useCallback((e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    })
+  }, []);
 
-  // const onModifyAuthorHandler = useInput(location.state.author);
+  // const onChangeAuthorhandler = useCallback((e) => {
+  //   setAuthor(e.target.value);
+  // }, [])
 
-  const onChangeTitlehandler = useCallback((e) => {
-    setTitle(e.target.value);
-  }, [])
+  // const onChangeTitlehandler = useCallback((e) => {
+  //   setTitle(e.target.value);
+  // }, [])
 
-  const onChangeBodyhandler = useCallback((e) => {
-    setBody(e.target.value);
-  }, [])
+  // const onChangeBodyhandler = useCallback((e) => {
+  //   setBody(e.target.value);
+  // }, [])
 
-  const onChangeUrlhandler = useCallback((e) => {
-    setUrl(e.target.value);
-  }, [])
+  // const onChangeUrlhandler = useCallback((e) => {
+  //   setUrl(e.target.value);
+  // }, [])
 
 
   const queryClient = useQueryClient();
@@ -76,12 +91,10 @@ const Post = () => {
 
   const onSubmitClickHandler = (e) => {
     e.preventDefault();
-    // 유효성검증
-    if (author === '') {
-      alert('이름을 입력해주세요!');
+    if (author === '' || title == '' || body == '' || url == '') {
+      alert('양식을 모두 입력해주세요.');
       return;
-    }
-    // 유효성검증
+    };
 
     const newPost = {
       id: uuidv4(),
@@ -143,9 +156,11 @@ const Post = () => {
               type="text"
               name="author"
               id="author"
-              value={author}
-              // * 수정
-              onChange={onChangeAuthorhandler}
+              // value={author}
+              value={form.author}
+              // onChange={onChangeAuthorhandler}
+              onChange={onFormChangeHandler}
+              maxLength={10}
               ref={authorRef}
             />
             <Label htmlFor="title">제목</Label>
@@ -153,8 +168,10 @@ const Post = () => {
               type="text"
               name="title"
               id="title"
-              value={title}
-              onChange={onChangeTitlehandler}
+              // value={title}
+              value={form.title}
+              // onChange={onChangeTitlehandler}
+              onChange={onFormChangeHandler}
               maxLength={12}
               ref={titleRef}
             />
@@ -163,8 +180,11 @@ const Post = () => {
               name="body"
               id="body"
               rows="10"
-              value={body}
-              onChange={onChangeBodyhandler}
+              // value={body}
+              value={form.body}
+              // onChange={onChangeBodyhandler}
+              onChange={onFormChangeHandler}
+              maxLength={250}
               ref={bodyRef}
             >
             </Textarea>
@@ -173,8 +193,10 @@ const Post = () => {
               type="url"
               name="url"
               id="url"
-              value={url}
-              onChange={onChangeUrlhandler}
+              // value={url}
+              value={form.url}
+              // onChange={onChangeUrlhandler}
+              onChange={onFormChangeHandler}
               ref={urlRef}
             />
             <MainContentBtnDiv>
