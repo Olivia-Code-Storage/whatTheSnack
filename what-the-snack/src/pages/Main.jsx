@@ -12,7 +12,7 @@ const Main = () => {
       <Header />
       <MainContainer>
         <MainContentTop>
-          <MainContentImg src={`${process.env.PUBLIC_URL}/images/haru.png`} alt="" onClick={() => {
+          <MainContentImg src={`${process.env.PUBLIC_URL}/images/list-capture.jpg`} alt="" onClick={() => {
             navigate('/snackRecos')
           }}/>
           <MainContentImgText>Go Snack Rocos!</MainContentImgText>
