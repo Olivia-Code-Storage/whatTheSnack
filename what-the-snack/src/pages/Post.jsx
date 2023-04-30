@@ -43,12 +43,12 @@ const Post = () => {
         body: location.state.body,
         url: location.state.url,
       });
-      return () => {
-        setAuthor('');
-        setTitle('');
-        setBody('');
-        setUrl('');
-      }
+      // return () => {
+      //   setAuthor('');
+      //   setTitle('');
+      //   setBody('');
+      //   setUrl('');
+      // }
     }
   }, []);
 
