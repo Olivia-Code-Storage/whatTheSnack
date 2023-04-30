@@ -7,12 +7,15 @@ import { v4 as uuidv4 } from 'uuid'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from 'react-query'
 import { addPosts, modifyPosts } from '../api/posts'
+import useInput from '../hooks/useInput'
 
 const Post = () => {
   const navigate = useNavigate();
   const location = useLocation()
 
-  const [author, setAuthor] = useState('');
+  // * 임시
+  // const [author, setAuthor] = useState('');
+  const [author, onChangeAuthorhandler] = useInput();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [url, setUrl] = useState('');
@@ -24,12 +27,13 @@ const Post = () => {
 
   useEffect(() => {
     if (location.state !== null) {
-      setAuthor(location.state.author);
+      useInput(location.state.author)
+      // setAuthor(location.state.author);
       setTitle(location.state.title);
       setBody(location.state.body);
       setUrl(location.state.url);
       return () => {
-        setAuthor('');
+        // setAuthor('');
         setTitle('');
         setBody('');
         setUrl('');
@@ -37,9 +41,12 @@ const Post = () => {
     }
   }, []);
 
-  const onChangeAuthorhandler = useCallback((e) => {
-    setAuthor(e.target.value);
-  }, [])
+  // * 임시 주석처리
+  // const onChangeAuthorhandler = useCallback((e) => {
+  //   setAuthor(e.target.value);
+  // }, [])
+
+  const onModifyAuthorHandler = useInput(location.state.author);
 
   const onChangeTitlehandler = useCallback((e) => {
     setTitle(e.target.value);
@@ -137,6 +144,7 @@ const Post = () => {
               name="author"
               id="author"
               value={author}
+              // * 수정
               onChange={onChangeAuthorhandler}
               ref={authorRef}
             />
