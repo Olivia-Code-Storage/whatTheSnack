@@ -6,6 +6,7 @@ import { getPosts } from '../api/posts'
 import { useNavigate, useParams } from 'react-router';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { removePosts } from '../api/posts';
+import useDataFind from '../hooks/useDataFind';
 
 
 const Detail = () => {
@@ -13,10 +14,8 @@ const Detail = () => {
   const navigate = useNavigate()
 
   const params = useParams()
-  const foundData = data.find((item) => {
-    return item.id === params.id
-  })
-
+  const foundData = useDataFind(data, params.id)
+  console.log(foundData)
   const queryClient = useQueryClient();
   const mutation = useMutation(removePosts, {
     onSuccess: () => {

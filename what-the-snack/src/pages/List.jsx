@@ -31,10 +31,10 @@ const List = () => {
           {
             data.map((item) => {
               return (
-                <Link to={`/snackRecos/${item.id}`}  style={{ textDecoration: "none" }} key={item.id}>
+                <ListLink to={`/snackRecos/${item.id}`}  style={{ textDecoration: "none" }} key={item.id}>
                   <MainContentItem key={item.id}>
                     <div>
-                      <img src={item.url} alt="" />
+                      <ListImg src={item.url} alt="" />
                     </div>
                     <ItemH3>{item.title}</ItemH3>
                     <ItemSpanDiv>
@@ -44,7 +44,7 @@ const List = () => {
                       <span>{item.like}</span>
                     </ItemSpanDiv>
                   </MainContentItem>
-                </Link>
+                </ListLink>
               )
             })
           }
@@ -54,6 +54,16 @@ const List = () => {
     </>
   )
 }
+
+const ListLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`
+
+const ListImg = styled.img`
+  width: 230px;
+  height: 230px;
+`
 
 const MainContainer = styled.main`
   background-color: #F7F5EB;
