@@ -29,12 +29,12 @@ const Post = () => {
         url: location.state.url,
       });
     }
-  }, []);
+  }, [])
 
-  const onFormChangeHandler = setForm({
+  const onFormChangeHandler = useCallback((e) => setForm({
       ...form,
       [e.target.name]: e.target.value,
-  });
+  }))
 
 
   const queryClient = useQueryClient();
@@ -52,30 +52,28 @@ const Post = () => {
 
   const onSubmitClickHandler = (e) => {
     e.preventDefault();
-    if (author === '' || title == '' || body == '' || url == '') {
+    if (form.author === '' || form.title === '' || form.body === '' || form.url === '') {
       alert('양식을 모두 입력해주세요.');
       return;
     };
 
     const newPost = {
       id: uuidv4(),
-      author,
-      title,
-      body,
+      author: form.author,
+      title: form.title,
+      body: form.body,
       like: 0,
-      url,
+      url: form.url,
     }
     addPostsMutation.mutate(newPost);
   }
 
   if(addPostsMutation.isSuccess) {
-    console.log('성공', addPostsMutation.data);
     alert(`게시글 등록이 완료되었습니다!`);
     navigate(-1);
   }
 
   if(addPostsMutation.isError) {
-    console.log('에러', addPostsMutation.error);
     alert(`게시글 등록 중 오류가 발생했습니다.`);
   }
 
@@ -83,21 +81,19 @@ const Post = () => {
     e.preventDefault();
     modifyPostsMutation.mutate({
       id: location.state.id,
-      author,
-      title,
-      body,
-      url,
+      author: form.author,
+      title: form.title,
+      body: form.body,
+      url: form.url,
     });
   }
 
   if(modifyPostsMutation.isSuccess) {
-    console.log('성공', modifyPostsMutation.data);
     alert(`게시글 수정이 완료되었습니다!`);
     navigate(-1);
   }
 
   if(modifyPostsMutation.isError) {
-    console.log('에러', modifyPostsMutation.error);
     alert(`게시글 수정 중 오류가 발생했습니다.`);
   }
 

@@ -15,7 +15,6 @@ const Detail = () => {
 
   const params = useParams()
   const foundData = useDataFind(data, params.id)
-  console.log(foundData)
   const queryClient = useQueryClient();
   const mutation = useMutation(removePosts, {
     onSuccess: () => {
