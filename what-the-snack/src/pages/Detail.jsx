@@ -1,5 +1,5 @@
-import Header from '../components/Header/Header';
-import Button from '../components/common/Button'
+import Header from './Header'
+import Button from '../components/Button'
 import styled from 'styled-components';
 import { getPosts } from '../api/posts'
 import { useNavigate, useParams } from 'react-router';

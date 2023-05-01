@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
-import Button from '../components/common/Button'
+import Header from './Header'
+import Footer from './Footer'
+import Button from '../components/Button'
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query'
 import { getPosts } from '../api/posts'
