@@ -5,7 +5,6 @@ function useDataFind(data, id) {
 
   useEffect(() => {
     const foundItem = data.find((item) => item.id === id);
-    // console.log(foundItem)
     setFoundData(foundItem);
   }, [data, id]);
 

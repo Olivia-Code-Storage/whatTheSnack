@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import Header from '../components/Header/Header';
 import Button from '../components/common/Button'
 import styled from 'styled-components';
@@ -10,7 +9,7 @@ import useDataFind from '../hooks/useDataFind';
 
 
 const Detail = () => {
-  const { isLoading, isError, data } = useQuery('posts', getPosts);
+  const { data } = useQuery('posts', getPosts);
   const navigate = useNavigate()
 
   const params = useParams()
@@ -27,17 +26,11 @@ const Detail = () => {
     <>
       <Header />
       <DetailContainer>
-
         <DetailContentImg src={foundData.url} alt="" />
-
         <DetailContentRight>
-
           <DetailContentTitle>{foundData.title}</DetailContentTitle>
-
           <DetailContentAuthor>{foundData.author}</DetailContentAuthor>
-
-          <p>{foundData.body}</p>
-
+            <p>{foundData.body}</p>
           <DetailBottomContentWrap>
             <span>🧡 {foundData.like}</span>
             <DetailContentBtnWrap>
@@ -58,11 +51,8 @@ const Detail = () => {
               }}>삭제</Button>
             </DetailContentBtnWrap>
           </DetailBottomContentWrap>
-
         </DetailContentRight>
-
-      </DetailContainer >
-
+      </DetailContainer>
     </>
   )
 }

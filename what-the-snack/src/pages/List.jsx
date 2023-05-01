@@ -38,10 +38,7 @@ const List = () => {
                     </div>
                     <ItemH3>{item.title}</ItemH3>
                     <ItemSpanDiv>
-                      <span>
-                        {item.like === 0 ? '🤍' : '❤️'}
-                      </span>&nbsp;
-                      <span>{item.like}</span>
+                      <span>❤️</span>
                     </ItemSpanDiv>
                   </MainContentItem>
                 </ListLink>

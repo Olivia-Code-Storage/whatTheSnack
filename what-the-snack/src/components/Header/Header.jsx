@@ -35,10 +35,12 @@ const HeaderContainer = styled.header`
   padding: 10px 10px 20px 10px;
   border-bottom: 2px solid black;
 `
+
 const HeaderTopContent = styled.div`
   display: flex;
   justify-content: space-between;
 `
+
 const HeaderTopContentItem = styled.div`
   display: flex;
   gap: 20px;
@@ -65,7 +67,4 @@ const HighLightSpan = styled.span`
   color: #ff4429;
 `
 
-const remove = styled.div`
-  
-`
 export default Header

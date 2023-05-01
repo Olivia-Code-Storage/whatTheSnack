@@ -13,7 +13,6 @@ const Router = () => {
         <Route path="/snackRecos" element={<List />} />
         <Route path="/snackRecos/post" element={<Post />} />
         <Route path="/snackRecos/:id" element={<Detail />} />
-        {/* <Route path="/snackRecos/post:id" element={<Post />} /> */}
       </Routes>
     </BrowserRouter>
   );

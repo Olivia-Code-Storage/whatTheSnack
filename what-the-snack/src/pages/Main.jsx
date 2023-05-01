@@ -57,7 +57,6 @@ const Main = () => {
 }
 
 const MainContainer = styled.main`
-	/* overflow: hidden; */
   height: 62vh;
   background-color: #fffc63;
   display: flex;
@@ -86,7 +85,6 @@ const MainContentImg = styled.img`
     opacity: 1;
     transition: opacity 0.5s;
   }
-
   &:hover {
     filter: brightness(40%);
     transition: all 0.3s;
@@ -99,7 +97,6 @@ const MainContentImg = styled.img`
 const MainContentTop = styled.div`
   position: relative;
 `
-
 
 const MainContentRight = styled.div`
   display: flex;
