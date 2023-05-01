@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
@@ -7,11 +7,10 @@ import { v4 as uuidv4 } from 'uuid'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from 'react-query'
 import { addPosts, modifyPosts } from '../api/posts'
-import useInput from '../hooks/useInput'
 
 const Post = () => {
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
 
   const [form, setForm] = useState({
     author: '',
@@ -19,23 +18,9 @@ const Post = () => {
     body: '',
     url: '',
   })
-  
-  const [author, setAuthor] = useState('');
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [url, setUrl] = useState('');
-
-  const authorRef = useRef(null);
-  const titleRef = useRef(null);
-  const bodyRef = useRef(null);
-  const urlRef = useRef(null);
 
   useEffect(() => {
     if (location.state !== null) {
-      // setAuthor(location.state.author);
-      // setTitle(location.state.title);
-      // setBody(location.state.body);
-      // setUrl(location.state.url);
       setForm({
         ...form,
         author: location.state.author,
@@ -43,12 +28,6 @@ const Post = () => {
         body: location.state.body,
         url: location.state.url,
       });
-      // return () => {
-      //   setAuthor('');
-      //   setTitle('');
-      //   setBody('');
-      //   setUrl('');
-      // }
     }
   }, []);
 
@@ -57,23 +36,7 @@ const Post = () => {
       ...form,
       [e.target.name]: e.target.value,
     })
-  }, []);
-
-  // const onChangeAuthorhandler = useCallback((e) => {
-  //   setAuthor(e.target.value);
-  // }, [])
-
-  // const onChangeTitlehandler = useCallback((e) => {
-  //   setTitle(e.target.value);
-  // }, [])
-
-  // const onChangeBodyhandler = useCallback((e) => {
-  //   setBody(e.target.value);
-  // }, [])
-
-  // const onChangeUrlhandler = useCallback((e) => {
-  //   setUrl(e.target.value);
-  // }, [])
+  }, [form]);
 
 
   const queryClient = useQueryClient();
@@ -137,7 +100,7 @@ const Post = () => {
 
   if(modifyPostsMutation.isError) {
     console.log('에러', modifyPostsMutation.error);
-    alert(`게시글 수록 중 오류가 발생했습니다.`);
+    alert(`게시글 수정 중 오류가 발생했습니다.`);
   }
 
   const onListLinkClickHandler = (e) => {
@@ -156,36 +119,27 @@ const Post = () => {
               type="text"
               name="author"
               id="author"
-              // value={author}
               value={form.author}
-              // onChange={onChangeAuthorhandler}
               onChange={onFormChangeHandler}
               maxLength={10}
-              ref={authorRef}
             />
             <Label htmlFor="title">제목</Label>
             <Input
               type="text"
               name="title"
               id="title"
-              // value={title}
               value={form.title}
-              // onChange={onChangeTitlehandler}
               onChange={onFormChangeHandler}
               maxLength={12}
-              ref={titleRef}
             />
             <Label htmlFor="body">내용</Label>
             <Textarea
               name="body"
               id="body"
               rows="10"
-              // value={body}
               value={form.body}
-              // onChange={onChangeBodyhandler}
               onChange={onFormChangeHandler}
               maxLength={250}
-              ref={bodyRef}
             >
             </Textarea>
             <Label htmlFor="url">이미지 URL</Label>
@@ -193,11 +147,8 @@ const Post = () => {
               type="url"
               name="url"
               id="url"
-              // value={url}
               value={form.url}
-              // onChange={onChangeUrlhandler}
               onChange={onFormChangeHandler}
-              ref={urlRef}
             />
             <MainContentBtnDiv>
               <Button type="button" size={'small'} color={'white'} onClick={onListLinkClickHandler}>
