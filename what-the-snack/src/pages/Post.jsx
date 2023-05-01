@@ -31,12 +31,10 @@ const Post = () => {
     }
   }, []);
 
-  const onFormChangeHandler = useCallback((e) => {
-    setForm({
+  const onFormChangeHandler = setForm({
       ...form,
       [e.target.name]: e.target.value,
-    })
-  }, [form]);
+  });
 
 
   const queryClient = useQueryClient();
