@@ -1,12 +1,12 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import styled from 'styled-components'
-import Header from './Header'
-import Footer from './Footer'
-import Button from '../components/Button'
-import { v4 as uuidv4 } from 'uuid'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
+import { useLocation, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import { v4 as uuidv4 } from 'uuid'
 import { addPosts, modifyPosts } from '../api/posts'
+import Button from '../components/Button'
+import Footer from './Footer'
+import Header from './Header'
 
 const Post = () => {
   const navigate = useNavigate();

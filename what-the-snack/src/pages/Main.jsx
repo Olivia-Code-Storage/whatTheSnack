@@ -1,8 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
-import Header from './Header'
-import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import Footer from './Footer'
+import Header from './Header'
 
 const Main = () => {
 
@@ -58,7 +58,7 @@ const Main = () => {
 
 const MainContainer = styled.main`
   height: 62vh;
-  background-color: #fffc63;
+  background-color: #002E80;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,10 +109,13 @@ const MainContentRightTitle = styled.h4`
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 2px;
+  color:white;
+
 `
 
 const MainContentRightItem = styled.p`
   line-height: 22px;
   font-size: 16px;
+  color:white;
 `
 export default Main

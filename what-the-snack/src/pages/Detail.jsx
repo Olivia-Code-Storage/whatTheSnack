@@ -1,17 +1,15 @@
-import Header from './Header'
-import Button from '../components/Button'
-import styled from 'styled-components';
-import { getPosts } from '../api/posts'
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { removePosts } from '../api/posts';
+import styled from 'styled-components';
+import { getPosts, removePosts } from '../api/posts';
+import Button from '../components/Button';
 import useDataFind from '../hooks/useDataFind';
+import Header from './Header';
 
 
 const Detail = () => {
   const { data } = useQuery('posts', getPosts);
   const navigate = useNavigate()
-
   const params = useParams()
   const foundData = useDataFind(data, params.id)
   const queryClient = useQueryClient();

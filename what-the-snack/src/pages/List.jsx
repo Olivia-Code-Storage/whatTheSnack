@@ -1,11 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
-import Header from './Header'
-import Footer from './Footer'
-import Button from '../components/Button'
-import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query'
+import { Link, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 import { getPosts } from '../api/posts'
+import Button from '../components/Button'
+import Footer from './Footer'
+import Header from './Header'
 
 const List = () => {
   const navigate = useNavigate();
