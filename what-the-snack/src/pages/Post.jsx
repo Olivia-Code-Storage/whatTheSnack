@@ -34,9 +34,8 @@ const Post = () => {
   const onFormChangeHandler = useCallback((e) => setForm({
       ...form,
       [e.target.name]: e.target.value,
-  }, []))
-
-
+  }, [form]))
+  
   const queryClient = useQueryClient();
   const addPostsMutation = useMutation(addPosts, {
     onSuccess: () => {
@@ -148,11 +147,16 @@ const Post = () => {
               <Button type="button" size={'small'} color={'white'} onClick={onListLinkClickHandler}>
                 뒤로가기
               </Button>
-              {
-                location.state !== null ?
-                  <Button type="button" size={'small'} color={'red'} onClick={onmodifyClickHandler}>수정하기</Button>
-                  : <Button type="button" size={'small'} color={'red'} onClick={onSubmitClickHandler}>작성하기</Button>
-              }
+              <Button 
+                type="button"
+                size={'small'}
+                color={'red'}
+                onClick={
+                  location.state !== null ? onmodifyClickHandler : onSubmitClickHandler
+                }
+              >
+                {location.state !== null ? '수정하기' : '작성하기'}
+              </Button>
             </MainContentBtnDiv>
           </MainContentForm>
         </div>
